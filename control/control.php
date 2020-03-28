@@ -2,6 +2,7 @@
 include_once("model/model.php");
 
 class control{
+
    function invoke()
    {
        $users = new users("localhost", "root", "");
