@@ -1,12 +1,16 @@
 <?php
-class users extends model{
+
+
+
+
+class users{
     private $con;
 
-    public function __construct($host, $user, $password) {
-        $this->con = new MySQLi($host, $user, $password);
+    public function __construct($host, $user, $password, $users) {
+        $this->con = new MySQLi($host, $user, $password) or die(mysqli_connect_error());
         
-        if (!mysqli_select_db($this->con,'users')) {
-            $sql = "CREATE DATABASE IF NOT EXISTS users";
+        if (!mysqli_select_db($this->con,'$users')) {
+            $sql = "CREATE DATABASE IF NOT EXISTS '$users'";
             if (!mysqli_query($this->con, $sql)) {
                echo "Error creating database: " . mysqli_error($this->con);
             }
@@ -24,3 +28,11 @@ class users extends model{
         }
     }
 }
+
+$obj = new users("localhost", "root", "", "usres");
+
+$obj->register();
+
+
+
+

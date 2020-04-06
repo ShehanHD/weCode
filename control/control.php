@@ -3,9 +3,8 @@ include_once("model/model.php");
 
 class control{
 
-   function invoke()
-   {
-       $users = new users("localhost", "root", "");
+   function invoke(){
+       $users = new users("localhost", "root", "", "users");
        
        if(isset($_REQUEST['value'])){
         $request = $_REQUEST['value'];
