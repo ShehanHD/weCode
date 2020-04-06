@@ -1,26 +1,25 @@
 <?php
-class users extends model{
-    private $con;
 
+
+class Users extends Model{
     public function __construct($host, $user, $password) {
-        $this->con = new MySQLi($host, $user, $password);
+        parent::__construct($host, $user, $password);
         
-        if (!mysqli_select_db($this->con,'users')) {
-            $sql = "CREATE DATABASE IF NOT EXISTS users";
-            if (!mysqli_query($this->con, $sql)) {
-               echo "Error creating database: " . mysqli_error($this->con);
-            }
-        }   
-        if (mysqli_connect_errno()) {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
+        $sql = "CREATE TABLE IF NOT EXISTS clients(
+            id int primary key AUTO_INCREMENT,
+            date DATE not null,
+            name varchar(50) NOT NULL,
+            surname varchar(50) not null,
+            email varchar(100) not null,
+            birthday DATE not null,
+            password varchar(100) not null
+            );";
+        if (!mysqli_query($this->connection, $sql)) {
+            echo "Error creating table client: " . mysqli_error($this->connection);
+        }    
     }
-    public function register(){
-        if($this->con or die(mysqli_connect_error())){
-            echo "1";
-        }
-        else{
-            echo "0";
-        }
+
+    public function register($name, $surname, $email, $birthday, $password, $repeat_password){
+        return 0;
     }
 }
